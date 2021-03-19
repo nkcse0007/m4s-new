@@ -1,0 +1,9 @@
+{% autoescape off %}
+    Hi ,
+    {% if user.name %}
+        My name is {{ user.name }} ,
+    {% else %}
+        I need help,
+    {% endif %}
+    {{ user.message }}
+{% endautoescape %}
