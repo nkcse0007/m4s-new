@@ -4,7 +4,7 @@ from blogs.models import Blog, Comment, Like, CommentReply
 from common.com import *
 from blogs.serializers import BlogSerializer, CommentSerializer, CommentReplySerializer, LikeSerializer
 import math
-
+import os
 
 class BlogHelper:
     def __init__(self, request):
@@ -21,7 +21,10 @@ class BlogHelper:
         if 'type' not in self.input_data or not self.input_data:
             return {'message': 'Error! type is missing.', 'data': {}, 'status': False}, BadRequest
         if 'id' in self.input_data:
+          
             blogs = Blog.objects.filter(id=self.input_data['id']).values().last()
+            data['image'] = os.environ.get('S3_FILE_PATH')+data['image']
+            data['icon'] = os.environ.get('S3_FILE_PATH')+data['icon']
             blogs['comments'] = list(Comment.objects.filter(blog=self.input_data['id']).values())
             blogs['likes'] = Like.objects.filter(blog=self.input_data['id'], type='LIKE').count()
             return {'message': '', 'data': blogs, 'status': True}, OK
@@ -37,11 +40,13 @@ class BlogHelper:
             to_limit = self.input_data['page'] * limit + limit
 
             blogs = list(
-                Blog.objects.filter(type=self.input_data['type'])[from_limit: to_limit].values('id', 'heading', 'image',
+                Blog.objects.filter(type=self.input_data['type'])[from_limit: to_limit].values('id', 'heading', 'image', 'icon',
                                                                                                'category', 'date',
                                                                                                'author', 'created_on'))
 
             for blog in blogs:
+                blog['image'] = [os.environ.get('S3_FILE_PATH')+blog['image']]
+                blog['icon'] = [os.environ.get('S3_FILE_PATH')+blog['icon']]
                 blog['comments'] = Comment.objects.filter(blog=blog['id']).count()
                 blog['likes'] = Like.objects.filter(blog=blog['id'], type='LIKE').count()
             total_count = Blog.objects.filter(type=self.input_data['type']).count()

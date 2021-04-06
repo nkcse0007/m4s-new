@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_swagger.views import get_swagger_view
-
+from django.views.decorators.csrf import csrf_exempt
 schema_view = get_swagger_view(title='M4S API')
 
 urlpatterns = [
@@ -16,4 +16,5 @@ urlpatterns = [
                   path('api/course/', include('cources.urls')),
                   path('api/training/', include('training.urls')),
                   path('api/upload/', UploadService.as_view()),
+                  path('api/s3upload/', include('s3upload.urls')),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

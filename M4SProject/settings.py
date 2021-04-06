@@ -31,7 +31,7 @@ DEBUG = True if os.environ.get('DEBUG') == 'on' else False
 
 # STATIC_URL = '/static/'
 ALLOWED_HOSTS = ['3.137.30.60', 'localhost', '127.0.0.1']
-
+ALLOWED_CLIENT_HOSTS = ['3.137.30.60']
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOW_METHODS = [
@@ -75,6 +75,7 @@ INSTALLED_APPS = [
     'referal',
     'training',
 
+    's3upload',
     'storages',
     'rest_framework_swagger',
     'django_better_admin_arrayfield',
@@ -114,6 +115,9 @@ TEMPLATES = [
 # Parser classes to help swagger, default ll be JSONParser only.
 REST_FRAMEWORK = {
     # Parser classes priority-wise for Swagger
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
     'DEFAULT_PARSER_CLASSES': [
         'rest_framework.parsers.FormParser',
         'rest_framework.parsers.MultiPartParser',
@@ -126,7 +130,7 @@ REST_FRAMEWORK = {
 WSGI_APPLICATION = 'M4SProject.wsgi.application'
 
 # Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
+# https://docs.djangoproje.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -186,14 +190,72 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'mysite/static'),
 ]
 
-AWS_ACCESS_KEY_ID = 'AKIAIT2Z5TDYPX3ARJBA'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'sibtc-assets'
+AWS_ACCESS_KEY_ID = 'AKIA5EGIFTEZRC6DMWMT'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'm4s-uploads'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-
+S3UPLOAD_REGION='us-east-2'
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
+
+
+
+S3UPLOAD_DESTINATIONS = {
+    'example_destination': {
+        # "key" [required] The location to upload file
+        #       1. String: folder path to upload to
+        #       2. Function: generate folder path + filename using a function  
+        'key': 'cdn/assets/upload',
+
+        # "auth" [optional] Limit to specfic Django users
+        #        Function: ACL function
+        #'auth': lambda u: u.is_staff,
+
+        # "allowed" [optional] Limit to specific mime types
+        #           List: list of mime types
+        #'allowed': ['image/jpeg', 'image/png', 'file/pdf'],
+        #'allowed_extensions': ('.jpg', '.jpeg', '.png'), # Defaults to all extensions
+        # "bucket" [optional] Bucket if different from AWS_STORAGE_BUCKET_NAME
+        #          String: bucket name
+        'bucket': 'm4s-uploads',
+
+        # "endpoint" [optional] Endpoint if different from AWS_S3_ENDPOINT_URL
+        #            String: endpoint URL
+        #'endpoint': 'https://s3.us-east-2.amazonaws.com',
+
+        # "region" [optional] Region if different from AWS_S3_REGION_NAME
+        #          String: region name
+        'region': 'us-east-2', # Default is 'AWS_S3_REGION_NAME'
+
+        # "acl" [optional] Custom ACL for object, default is 'public-read'
+        #       String: ACL
+        #'acl': 'private',
+
+        # "cache_control" [optional] Custom cache control header
+        #                 String: header
+        #'cache_control': 'max-age=2592000',
+
+        # "content_disposition" [optional] Custom content disposition header
+        #                       String: header
+        #'content_disposition': lambda x: 'attachment; filename="{}"'.format(x),
+
+        # "content_length_range" [optional] Limit file size
+        #                        Tuple: (from, to) in bytes
+        #'content_length_range': (5000, 20000000),
+
+        # "server_side_encryption" [optional] Use serverside encryption
+        #                          String: encrytion standard
+        #'server_side_encryption': 'AES256',
+
+        # "allow_existence_optimization" [optional] Checks to see if file already exists,
+        #                                returns the URL to the object if so (no upload)
+        #                                Boolean: True, False
+        'allow_existence_optimization': False,
+    }
+}
+
+
 
 # AWS_LOCATION = 'static'
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

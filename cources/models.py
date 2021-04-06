@@ -1,5 +1,5 @@
 from django.db import models
-
+from s3upload.fields import S3UploadField
 # Create your models here.
 
 from django.utils.translation import ugettext_lazy as _
@@ -79,10 +79,12 @@ class Type(models.Model):
 class Course(models.Model):
     name = models.CharField(max_length=20, blank=False, null=False, validators=[minimum_length_char],
                             help_text='Name of the Course')
-    image = ArrayField(models.URLField(blank=False, null=False), default=list, blank=False, null=False,
-                       help_text='Add Comma separated multiple image urls')
-    icon = ArrayField(models.URLField(blank=True, null=True), default=list, blank=True, null=True,
-                      help_text='Add Comma separated multiple icon urls')
+#    image = ArrayField(models.URLField(blank=False, null=False), default=list, blank=False, null=False,
+#                       help_text='Add Comma separated multiple image urls')
+#    icon = ArrayField(models.URLField(blank=True, null=True), default=list, blank=True, null=True,
+#                      help_text='Add Comma separated multiple icon urls')
+    image = S3UploadField(dest='example_destination')
+    icon = S3UploadField(dest='example_destination')
     category = models.CharField(max_length=20, choices=CATEGORY, blank=False, null=False)
     type = models.ManyToManyField(to=Type, null=True, blank=True)
     topic = models.ManyToManyField(to=Topic, null=True, blank=True)

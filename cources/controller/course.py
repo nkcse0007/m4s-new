@@ -1,7 +1,7 @@
 import json
 import operator
 from functools import reduce
-
+import os
 from common.com import *
 from common.json_response import *
 from dateutil.parser import parse
@@ -21,6 +21,8 @@ class CourseHelper:
     def post(self):
         if 'id' in self.input_data:
             data = Course.objects.filter(id=self.input_data['id']).values().last()
+            data['image'] = os.environ.get('S3_FILE_PATH')+data['image']
+            data['icon'] = os.environ.get('S3_FILE_PATH')+data['icon']
             data['comments'] = list(Comment.objects.filter(course=self.input_data['id']).values())
             data['likes'] = Like.objects.filter(course=self.input_data['id'], type='LIKE').count()
             return {'message': '', 'data': data, 'status': True}, OK
@@ -53,6 +55,8 @@ class CourseHelper:
                 query &= Q(name__icontains=self.input_data['keyword'])
             data = list(Course.objects.distinct().filter(query)[from_limit: to_limit].values())
             for blog in data:
+                blog['image'] = [os.environ.get('S3_FILE_PATH')+blog['image']]
+                blog['icon'] = [os.environ.get('S3_FILE_PATH')+blog['icon']]
                 blog['comments'] = Comment.objects.filter(course=blog['id']).count()
                 blog['likes'] = Like.objects.filter(course=blog['id'], type='LIKE').count()
 

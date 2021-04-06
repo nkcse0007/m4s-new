@@ -1,5 +1,6 @@
 from django.db import models
-
+from s3direct.fields import S3DirectField
+from s3upload.fields import S3UploadField
 # Create your models here.
 
 from django.utils.translation import ugettext_lazy as _
@@ -70,20 +71,35 @@ def minimum_length_phone(value):
 class Topic(models.Model):
     name = models.CharField(max_length=100, blank=False, null=False, validators=[minimum_length_char],
                             help_text='Name of the Topic')
+    # ---------------------------------------------------------------------------
+    def __str__(self):
+        """
+        Returns the string representation of the SubmitCV object.
+        """
+        return str(self.name)
 
 
 class Type(models.Model):
     name = models.CharField(max_length=100, blank=False, null=False, validators=[minimum_length_char],
                             help_text='Name of the Topic')
 
+    # ---------------------------------------------------------------------------
+    def __str__(self):
+        """
+        Returns the string representation of the SubmitCV object.
+        """
+        return str(self.name)
 
 class Training(models.Model):
     name = models.CharField(max_length=20, blank=False, null=False, validators=[minimum_length_char],
                             help_text='Name of the Training')
-    image = ArrayField(models.URLField(blank=False, null=False), default=list, blank=False, null=False,
-                       help_text='Add Comma separated multiple image urls')
-    icon = ArrayField(models.URLField(blank=True, null=True), default=list, blank=True, null=True,
-                      help_text='Add Comma separated multiple icon urls')
+#    image = ArrayField(models.URLField(blank=True, null=True), default=list, blank=True, null=True,
+#                      help_text='Add Comma separated multiple image urls')
+
+    image = S3UploadField(dest='example_destination')
+    icon = S3UploadField(dest='example_destination')
+#    icon = ArrayField(models.URLField(blank=True, null=True), default=list, blank=True, null=True,
+#                      help_text='Add Comma separated multiple icon urls')
     category = models.CharField(max_length=20, choices=CATEGORY, blank=False, null=False)
     is_online = models.BooleanField(default=False)
     type = models.ManyToManyField(to=Type, null=True, blank=True)

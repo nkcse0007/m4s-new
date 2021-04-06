@@ -3,11 +3,11 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from rest_framework_swagger.views import get_swagger_view
-
+from django.views.decorators.csrf import csrf_exempt
 from .views import TrainingView, CommentView, CommentReplyView, LikeView
 
 urlpatterns = [
-                  path('training/', TrainingView.as_view()),
+                  path('training/', csrf_exempt(TrainingView.as_view())),
                   path('comment/', CommentView.as_view()),
                   path('comment-reply/', CommentReplyView.as_view()),
                   path('like/', LikeView.as_view()),

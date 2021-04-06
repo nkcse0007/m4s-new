@@ -1,7 +1,7 @@
 import jsonfield
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
-
+from s3upload.fields import S3UploadField
 # Create your models here.
 
 CATEGORY = [
@@ -36,8 +36,10 @@ def reply_check(value):
 class Blog(models.Model):
     type = models.CharField(max_length=20, choices=BLOG_TYPE, blank=False, null=False)
     heading = models.TextField(blank=False, null=False, help_text='Add Heading of Blog')
-    image = ArrayField(models.URLField(blank=False, null=False), default=list, blank=False, null=False, help_text='Add Comma separated multiple image urls')
-    icon = ArrayField(models.URLField(blank=True, null=True), default=list, blank=True, null=True, help_text='Add Comma separated multiple icon urls')
+#    image = ArrayField(models.URLField(blank=False, null=False), default=list, blank=False, null=False, help_text='Add Comma separated multiple image urls')
+#    icon = ArrayField(models.URLField(blank=True, null=True), default=list, blank=True, null=True, help_text='Add Comma separated multiple icon urls')
+    image = S3UploadField(dest='example_destination')
+    icon = S3UploadField(dest='example_destination')
     category = models.CharField(max_length=20, choices=CATEGORY, blank=False, null=False)
     small_description = models.TextField(null=False, blank=False)
     detailed_description = models.TextField(null=False, blank=False)

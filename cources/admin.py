@@ -17,3 +17,16 @@ class TypeAdmin(admin.ModelAdmin):
 @admin.register(Topic)
 class TokenAdmin(admin.ModelAdmin):
     list_display = ['name']
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['comment']
+
+@admin.register(CommentReply)
+class CommentReplyAdmin(admin.ModelAdmin):
+    list_display = ['reply']
+
+@admin.register(Like)
+class LikeAdmin(admin.ModelAdmin):
+    list_display = ['user_name']

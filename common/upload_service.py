@@ -67,3 +67,9 @@ def upload(file, path, acl="public-read"):
                              })
     path = f"{os.environ.get('S3_PATH')}{os.environ.get('CDN_PATH')}{path}"
     return path
+
+
+
+def upload_to_imagefield(*args, **kwargs):
+    import pdb;pdb.set_trace()
+    print('dafdf')

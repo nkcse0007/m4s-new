@@ -2,9 +2,10 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .controller.training import TrainingHelper, CommentHelper, LikeHelper, CommentReplyHelper
-
+from django.views.decorators.csrf import csrf_exempt
 
 class TrainingView(APIView):
+    @csrf_exempt
     def post(self, request):
         obj = TrainingHelper(request)
         response, status = obj.post()
