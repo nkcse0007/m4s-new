@@ -20067,3 +20067,252 @@ April 02, 2021 - 13:57:15
 Django version 3.1.7, using settings 'M4SProject.settings'
 Starting development server at http://0.0.0.0:8000/
 Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+/home/ubuntu/.local/lib/python3.6/site-packages/requests/__init__.py:91: RequestsDependencyWarning: urllib3 (1.26.4) or chardet (3.0.4) doesn't match a supported version!
+  RequestsDependencyWarning)
+System check identified some issues:
+
+WARNINGS:
+cources.Course.topic: (fields.W340) null has no effect on ManyToManyField.
+cources.Course.type: (fields.W340) null has no effect on ManyToManyField.
+training.Training.topic: (fields.W340) null has no effect on ManyToManyField.
+training.Training.type: (fields.W340) null has no effect on ManyToManyField.
+
+System check identified 4 issues (0 silenced).
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 219, in ensure_connection
+    self.connect()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/postgresql/base.py", line 187, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/psycopg2/__init__.py", line 127, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: could not connect to server: Connection refused
+	Is the server running on host "localhost" (127.0.0.1) and accepting
+	TCP/IP connections on port 5432?
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/threading.py", line 916, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.6/threading.py", line 864, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/utils/autoreload.py", line 53, in wrapper
+    fn(*args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/management/commands/runserver.py", line 121, in inner_run
+    self.check_migrations()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/management/base.py", line 459, in check_migrations
+    executor = MigrationExecutor(connections[DEFAULT_DB_ALIAS])
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/migrations/executor.py", line 18, in __init__
+    self.loader = MigrationLoader(self.connection)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/migrations/loader.py", line 53, in __init__
+    self.build_graph()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/migrations/loader.py", line 216, in build_graph
+    self.applied_migrations = recorder.applied_migrations()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/migrations/recorder.py", line 77, in applied_migrations
+    if self.has_table():
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/migrations/recorder.py", line 55, in has_table
+    with self.connection.cursor() as cursor:
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 259, in cursor
+    return self._cursor()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 235, in _cursor
+    self.ensure_connection()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 219, in ensure_connection
+    self.connect()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 219, in ensure_connection
+    self.connect()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/postgresql/base.py", line 187, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/psycopg2/__init__.py", line 127, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+django.db.utils.OperationalError: could not connect to server: Connection refused
+	Is the server running on host "localhost" (127.0.0.1) and accepting
+	TCP/IP connections on port 5432?
+
+
+/home/ubuntu/m4s-new/M4SProject/settings.py changed, reloading.
+Performing system checks...
+
+Watching for file changes with StatReloader
+/home/ubuntu/.local/lib/python3.6/site-packages/requests/__init__.py:91: RequestsDependencyWarning: urllib3 (1.26.4) or chardet (3.0.4) doesn't match a supported version!
+  RequestsDependencyWarning)
+System check identified some issues:
+
+WARNINGS:
+cources.Course.topic: (fields.W340) null has no effect on ManyToManyField.
+cources.Course.type: (fields.W340) null has no effect on ManyToManyField.
+training.Training.topic: (fields.W340) null has no effect on ManyToManyField.
+training.Training.type: (fields.W340) null has no effect on ManyToManyField.
+
+System check identified 4 issues (0 silenced).
+Performing system checks...
+
+April 06, 2021 - 03:24:06
+Django version 3.1.7, using settings 'M4SProject.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+/home/ubuntu/.local/lib/python3.6/site-packages/requests/__init__.py:91: RequestsDependencyWarning: urllib3 (1.26.4) or chardet (3.0.4) doesn't match a supported version!
+  RequestsDependencyWarning)
+System check identified some issues:
+
+WARNINGS:
+cources.Course.topic: (fields.W340) null has no effect on ManyToManyField.
+cources.Course.type: (fields.W340) null has no effect on ManyToManyField.
+training.Training.topic: (fields.W340) null has no effect on ManyToManyField.
+training.Training.type: (fields.W340) null has no effect on ManyToManyField.
+
+System check identified 4 issues (0 silenced).
+Not Found: /api/
+[06/Apr/2021 03:42:15] "GET /api/ HTTP/1.0" 404 2981
+----------------------------------------
+Exception happened during processing of request from ('109.198.200.247', 9577)
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/socketserver.py", line 654, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/lib/python3.6/socketserver.py", line 364, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/lib/python3.6/socketserver.py", line 724, in __init__
+    self.handle()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 172, in handle
+    self.handle_one_request()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 182, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [Errno 104] Connection reset by peer
+----------------------------------------
+----------------------------------------
+Exception happened during processing of request from ('109.198.200.247', 63227)
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/socketserver.py", line 654, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/lib/python3.6/socketserver.py", line 364, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/lib/python3.6/socketserver.py", line 724, in __init__
+    self.handle()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 172, in handle
+    self.handle_one_request()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 182, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [Errno 104] Connection reset by peer
+----------------------------------------
+[06/Apr/2021 09:17:32] code 400, message Bad HTTP/0.9 request type ('\x00\x00\x00àZ\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x05\x01=K\x00\x00\x01\x01')
+[06/Apr/2021 09:17:32] "   àZ          =K   ¨À(¦?db/ admin                                           0 ¬Ä²^ÊN" 400 -
+[06/Apr/2021 09:17:32] code 400, message Bad HTTP/0.9 request type ('\x00\x00\x00àZ\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x05\x01=K\x00\x00\x01\x01')
+[06/Apr/2021 09:17:32] "   àZ          =K   ¨À(¦?db/ admin                                           0 ¬Ä²^ÊN" 400 -
+[06/Apr/2021 09:17:32] code 400, message Bad HTTP/0.9 request type ('\x00\x00\x00àZ\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x05\x01=K\x00\x00\x01\x01')
+[06/Apr/2021 09:17:32] "   àZ          =K   ¨À(¦?db/ admin                                           0 ¬Ä²^ÊN" 400 -
+Not Found: /
+[06/Apr/2021 10:07:26] "GET / HTTP/1.1" 404 2953
+[06/Apr/2021 11:05:49] code 400, message Bad request version ('À\x14À')
+[06/Apr/2021 11:05:49] You're accessing the development server over HTTPS, but it only supports HTTP.
+
+----------------------------------------
+Exception happened during processing of request from ('109.198.200.247', 11650)
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/socketserver.py", line 654, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/lib/python3.6/socketserver.py", line 364, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/lib/python3.6/socketserver.py", line 724, in __init__
+    self.handle()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 172, in handle
+    self.handle_one_request()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 182, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [Errno 104] Connection reset by peer
+----------------------------------------
+----------------------------------------
+Exception happened during processing of request from ('162.142.125.37', 44362)
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/socketserver.py", line 654, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/lib/python3.6/socketserver.py", line 364, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/lib/python3.6/socketserver.py", line 724, in __init__
+    self.handle()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 172, in handle
+    self.handle_one_request()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 182, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [Errno 104] Connection reset by peer
+----------------------------------------
+Not Found: /
+[06/Apr/2021 13:10:30] "GET / HTTP/1.1" 404 2953
+----------------------------------------
+Exception happened during processing of request from ('162.142.125.37', 42980)
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/socketserver.py", line 654, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/lib/python3.6/socketserver.py", line 364, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/lib/python3.6/socketserver.py", line 724, in __init__
+    self.handle()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 174, in handle
+    self.handle_one_request()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 182, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [Errno 104] Connection reset by peer
+----------------------------------------
+Not Found: /
+[06/Apr/2021 13:10:30] "GET / HTTP/1.1" 404 2953
+Invalid HTTP_HOST header: 'fuwu.sogou.com'. You may need to add 'fuwu.sogou.com' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: 'fuwu.sogou.com'. You may need to add 'fuwu.sogou.com' to ALLOWED_HOSTS.
+[06/Apr/2021 15:23:05] code 400, message Bad request syntax ('\x16\x03\x01\x00î\x01\x00\x00ê\x03\x03\x1b\x8fQÌ½Þt!#4Ì\x85£v\x97A\x0b9Àe4%¸¹O*©ÑÔ\x84<´ \x87ò\x1d¿\x8aL\x00\x15âh§æ\x8c|Ý7aÜÄ\x85öh·à¤¹.&á\x08\x1fÄ\x00&Ì¨Ì©À/À0À+À,À\x13À\tÀ\x14À')
+[06/Apr/2021 15:23:05] You're accessing the development server over HTTPS, but it only supports HTTP.
+
+Bad Request: /http:/fuwu.sogou.com/404/index.html
+[06/Apr/2021 15:23:05] "GET http://fuwu.sogou.com/404/index.html HTTP/1.1" 400 69749
+Bad Request: /http:/fuwu.sogou.com/404/index.html
+[06/Apr/2021 15:23:05] "GET http://fuwu.sogou.com/404/index.html HTTP/1.1" 400 69721
+[06/Apr/2021 15:23:12] code 400, message Bad request syntax ('\x05\x01\x00')
+[06/Apr/2021 15:23:12] " " 400 -
+[06/Apr/2021 15:23:12,053] - Broken pipe from ('222.186.136.150', 34785)
+
+Not Found: /
+[06/Apr/2021 15:55:52] "GET / HTTP/1.1" 404 2948
+Not Found: /
+[06/Apr/2021 16:23:50] "GET / HTTP/1.1" 404 2953
+Not Found: /
+[06/Apr/2021 17:36:54] "GET / HTTP/1.0" 404 2953
+[06/Apr/2021 18:39:11] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+[06/Apr/2021 18:39:11] "  /*à     Cookie: mstshash=Administr" 400 -
+Not Found: /
+[06/Apr/2021 19:07:39] "GET / HTTP/1.1" 404 2953
+[06/Apr/2021 20:37:16] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00+&à\x00\x00\x00\x00\x00Cookie:')
+[06/Apr/2021 20:37:16] "  +&à     Cookie: mstshash=hello" 400 -
+[06/Apr/2021 22:52:36] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00+&à\x00\x00\x00\x00\x00Cookie:')
+[06/Apr/2021 22:52:36] "  +&à     Cookie: mstshash=hello" 400 -
+[07/Apr/2021 01:04:45] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00+&à\x00\x00\x00\x00\x00Cookie:')
+[07/Apr/2021 01:04:45] "  +&à     Cookie: mstshash=hello" 400 -
+Not Found: /
+[07/Apr/2021 01:59:57] "GET / HTTP/1.1" 404 2953

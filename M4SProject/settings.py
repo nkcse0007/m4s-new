@@ -30,8 +30,8 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET')
 DEBUG = True if os.environ.get('DEBUG') == 'on' else False
 
 # STATIC_URL = '/static/'
-ALLOWED_HOSTS = ['3.137.30.60', 'localhost', '127.0.0.1']
-ALLOWED_CLIENT_HOSTS = ['3.137.30.60']
+ALLOWED_HOSTS = ['3.137.30.60', 'localhost', '127.0.0.1', 'mefosh.com']
+ALLOWED_CLIENT_HOSTS = ['3.137.30.60', 'mefosh.com']
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOW_METHODS = [
