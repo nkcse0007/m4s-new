@@ -1,32 +1,60 @@
 version: '3.8'
 services:
+    db-postgres:
+        restart: always
+        image: postgres:latest
+        container_name: db-postgres
+        environment:
+            - POSTGRES_HOST_AUTH_METHOD=trust
+            - POSTGRES_DB:m4sdatabasenew
+            - POSTGRES_USER:m4suser
+            - POSTGRES_PASSWORD:db@m4s
+        volumes:
+            - postgres-volume:/var/lib/postgresql/data
+
+
     backend:
+        restart: always
+        container_name: backend
         build:
             context: .
             dockerfile: Dockerfile
-        command: python manage.py runserver 0.0.0.0:8000
+        command: bash -c "cd /code/ && python manage.py collectstatic --no-input && python manage.py migrate && gunicorn --bind 0.0.0.0:8000 M4SProject.wsgi:application"    
         ports:
             - 8000:8000
         volumes:
-            - .:/app
+            - static:/code/static
         depends_on: 
-            - db
+            - db-postgres
 
-    db:
-        image: postgres:latest
-        restart: always
-        environment:
-            - POSTGRES_HOST_AUTH_METHOD=trust
-            - DB_NAME:m4sdatabasenew
-            - DB_USER:m4suser
-            - DB_PASSWORD:db@m4s
-            - DB_HOST:172.17.0.1
-            - DB_PORT:5432
-        volumes:
-            - .dbdata:/var/lib/postgresql/
-        ports:
-            - "5432:5432"
-        env_file: .env
+        # expose port 8000
+        expose:
+            - "8000"
+        # connect to db above
+        links:
+            - db-postgres
+        # only start if db above is available
+        depends_on:
+            - db-postgres
+
+    
+    # Nginx server
+    #nginx:
+    #    restart: always
+    #    container_name: nginx
+    #    build:
+    #        context: ..
+    #        dockerfile: Dockerfile
+    #    volumes:
+    #        - static:/static
+    #    ports:
+    #        - "80:80"
+    #        - "443:443"
+    #    depends_on:
+    #        - backend
 
 volumes:
-  dbdata:
+  postgres-volume:
+    external: true
+  static:
+

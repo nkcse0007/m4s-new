@@ -135,11 +135,11 @@ WSGI_APPLICATION = 'M4SProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT'),
+        'NAME': 'm4sdatabasenew',
+        'USER': 'm4suser',
+        'PASSWORD': 'db@m4s',
+        'HOST': 'db-postgres',
+        'PORT': '5432',
 
     }
     # 'default': {
